@@ -8,6 +8,7 @@ import com.vaescode.apirest.restservice.service.IProfesorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,6 +62,23 @@ public class ProfesorRestController {
 
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
+
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<?> deleteProfesor(@PathVariable(value = "id") Long id){
+		
+		Profesor profesordb =  null;
+		
+		profesordb = profesorService.findById(id);
+		
+		if(profesordb != null) {
+			profesorService.deleteProfesor(id);
+			return new ResponseEntity<>( HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
 
 	}
 }
