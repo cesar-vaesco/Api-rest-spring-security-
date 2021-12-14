@@ -53,32 +53,47 @@ public class ProfesorRestController {
 
 			profesordb.setNombre(profesor.getNombre());
 			profesordb.setEmail(profesor.getEmail());
-			
+
 			profesorService.updateProfesor(profesordb);
-			
+
 			return new ResponseEntity<>(profesordb, HttpStatus.OK);
-			
+
 		} else {
 
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteProfesor(@PathVariable(value = "id") Long id){
-		
-		Profesor profesordb =  null;
-		
+	public ResponseEntity<?> deleteProfesor(@PathVariable(value = "id") Long id) {
+
+		Profesor profesordb = null;
+
 		profesordb = profesorService.findById(id);
-		
-		if(profesordb != null) {
+
+		if (profesordb != null) {
 			profesorService.deleteProfesor(id);
-			return new ResponseEntity<>( HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
-		
 
 	}
+
+	@DeleteMapping("delete")
+	public ResponseEntity<?> deleteAllTeachers() {
+
+		List<Profesor> profesores = profesorService.findAll();
+
+		if (profesores.addAll(getProfesores())) {
+
+			profesorService.deleteProfesores();
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+
+	}
+
 }

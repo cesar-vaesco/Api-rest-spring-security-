@@ -76,4 +76,10 @@ public class ProfesorServiceImpl implements IProfesorService {
         return (Profesor) profesorDao.save(profesor);
     }
 
+	@Override
+	public void deleteProfesores() {
+		
+		profesorDao.deleteAll();
+	}
+
 }
