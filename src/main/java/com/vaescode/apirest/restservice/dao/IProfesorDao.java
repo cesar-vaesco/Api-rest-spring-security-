@@ -1,11 +1,10 @@
 package com.vaescode.apirest.restservice.dao;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-
 import java.util.Optional;
 
 import com.vaescode.apirest.restservice.entity.Profesor;
+
+import org.springframework.data.repository.CrudRepository;
 
 public interface IProfesorDao extends CrudRepository<Profesor, Long> {
 
@@ -16,6 +15,6 @@ public interface IProfesorDao extends CrudRepository<Profesor, Long> {
 
     public Optional <Profesor> findById(Long id);
 
-    @Query("SELECT p FROM Profesor p WHERE p.id = ?1")
-    public Profesor findByIdSQL(Long id);
+    /* @Query("select p from Profesor p where p.id=?1")
+    public Profesor findByIdSQL(Long id); */
 }

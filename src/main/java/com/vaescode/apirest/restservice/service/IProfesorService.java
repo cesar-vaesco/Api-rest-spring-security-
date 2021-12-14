@@ -23,7 +23,7 @@ public interface IProfesorService {
 
     public Profesor findById(Long profesor_id);
 
-    public Profesor findByIdSQL(Long profesor_id);
+    /* public Profesor findByIdSQL(Long id); */
 
     public Profesor saveProfesor(Profesor profesor);
 

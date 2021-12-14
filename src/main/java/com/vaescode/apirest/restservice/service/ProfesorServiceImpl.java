@@ -3,8 +3,6 @@ package com.vaescode.apirest.restservice.service;
 import java.util.List;
 import java.util.Optional;
 
-
-
 import com.vaescode.apirest.restservice.dao.IProfesorDao;
 import com.vaescode.apirest.restservice.entity.Profesor;
 
@@ -14,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProfesorServiceImpl implements IProfesorService {
-
 
     @Autowired
     private IProfesorDao profesorDao;
@@ -28,7 +25,7 @@ public class ProfesorServiceImpl implements IProfesorService {
     @Override
     @Transactional(readOnly = true)
     public Profesor findProfesor(Profesor profesor) {
-        return (Profesor)profesorDao.findByEmail(profesor.getEmail());
+        return (Profesor) profesorDao.findByEmail(profesor.getEmail());
     }
 
     @Override
@@ -46,13 +43,13 @@ public class ProfesorServiceImpl implements IProfesorService {
     @Override
     @Transactional
     public Profesor updateProfesor(Profesor profesor) {
-        return (Profesor)profesorDao.save(profesor);
+        return (Profesor) profesorDao.save(profesor);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Profesor> findProfesorById(Long profesor_id) {
-        return (Optional<Profesor>)profesorDao.findById(profesor_id);
+        return (Optional<Profesor>) profesorDao.findById(profesor_id);
     }
 
     @Override
@@ -67,16 +64,16 @@ public class ProfesorServiceImpl implements IProfesorService {
         return profesorDao.findById(profesor_id).orElse(null);
     }
 
-    @Override
+    /* @Override
     @Transactional(readOnly = true)
-    public Profesor findByIdSQL(Long profesor_id) {
-        return profesorDao.findByIdSQL(profesor_id);
-    }
+    public Profesor findByIdSQL(Long id) {
+        return profesorDao.findByIdSQL(id);
+    } */
 
     @Override
     @Transactional
     public Profesor saveProfesor(Profesor profesor) {
-        return (Profesor)profesorDao.save(profesor);
+        return (Profesor) profesorDao.save(profesor);
     }
 
 }
