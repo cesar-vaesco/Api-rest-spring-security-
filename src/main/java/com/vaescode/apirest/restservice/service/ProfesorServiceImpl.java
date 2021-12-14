@@ -78,7 +78,6 @@ public class ProfesorServiceImpl implements IProfesorService {
 
 	@Override
 	public void deleteProfesores() {
-		
 		profesorDao.deleteAll();
 	}
 

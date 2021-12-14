@@ -31,6 +31,18 @@ public class ProfesorRestController {
 		return profesorService.findAll();
 	}
 
+	@GetMapping("/profesor/{id}")
+	public ResponseEntity<Profesor> getProfesorById(@PathVariable("id") Long id) {
+
+		Profesor profesordb = profesorService.findById(id);
+
+		if (profesordb != null) {
+			return new ResponseEntity<Profesor>(profesordb, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 	@PostMapping("/sign_up")
 	public ResponseEntity<Void> addProfesor(@RequestBody Profesor profesor) {
 
