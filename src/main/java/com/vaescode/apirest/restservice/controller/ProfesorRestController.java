@@ -38,7 +38,7 @@ public class ProfesorRestController {
 	// Método login -> requiere correo y contraseña
 
 	@PostMapping("/login")
-	public ResponseEntity<?> loginProfesor(@RequestBody Profesor profesor){
+	public ResponseEntity<?> loginProfesor(@RequestBody(required = false) Profesor profesor){
 		log.info("Profesor: " + profesor);
 		Profesor profesorDB = profesorService.checkProfesorLogin(profesor);
 		log.info("ProfesorDB: " + profesorDB);
@@ -46,7 +46,7 @@ public class ProfesorRestController {
 		if(profesorDB != null) {
 			return new ResponseEntity<>(profesorDB, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Correo y/o contraseña erroneos",HttpStatus.NOT_FOUND);
 		}
 	}
 

@@ -7,8 +7,11 @@ import com.vaescode.apirest.restservice.dao.IProfesorDao;
 import com.vaescode.apirest.restservice.entity.Profesor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class ProfesorServiceImpl implements IProfesorService {
@@ -31,7 +34,17 @@ public class ProfesorServiceImpl implements IProfesorService {
     @Override
     @Transactional(readOnly = true)
     public Profesor checkProfesorLogin(Profesor profesor) {
-        return profesorDao.findByEmailAndPassword(profesor.getEmail(), profesor.getPassword());
+    	
+    	try {
+    		if(profesor!= null) {
+        		return profesorDao.findByEmailAndPassword(profesor.getEmail(), profesor.getPassword());    		
+        	} 
+    	}catch ( ResponseStatusException e) {
+    		throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+		return profesor;
+    	
+    	
     }
 
     @Override
