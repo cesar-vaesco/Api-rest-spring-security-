@@ -1,8 +1,11 @@
 package com.vaescode.apirest.restservice.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.vaescode.apirest.restservice.entity.Profesor;
+import com.vaescode.apirest.restservice.mapper.Mapper;
+import com.vaescode.apirest.restservice.model.MProfesor;
 import com.vaescode.apirest.restservice.service.IProfesorService;
 
 import org.slf4j.Logger;
@@ -44,7 +47,11 @@ public class ProfesorRestController {
 		log.info("ProfesorDB: " + profesorDB);
 
 		if(profesorDB != null) {
-			return new ResponseEntity<>(profesorDB, HttpStatus.OK);
+			List<Profesor> profesores = new ArrayList<>(); 
+			profesores.add(profesorDB);
+			List<MProfesor> mProfesores = new ArrayList<>();
+			mProfesores = Mapper.convertirLista(profesores);
+			return new ResponseEntity<>(mProfesores, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>("Correo y/o contraseña erroneos",HttpStatus.NOT_FOUND);
 		}
