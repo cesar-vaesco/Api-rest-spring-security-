@@ -88,7 +88,16 @@ public class Profesor implements Serializable {
         this.createAt = createAt;
     }
 
+    
 
-    private static final long serialVersionUID = 1L;
+    @Override
+	public String toString() {
+		return "Profesor [id=" + id + ", nombre=" + nombre + ", email=" + email + ", password=" + password
+				+ ", createAt=" + createAt + "]";
+	}
+
+
+
+	private static final long serialVersionUID = 1L;
 
 }
