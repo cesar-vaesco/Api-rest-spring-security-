@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "curso")
+@Table(name = "cursos")
 public class Curso implements Serializable {
 
 	@Id
@@ -21,7 +21,7 @@ public class Curso implements Serializable {
 	private String nombreCurso;
 
 	@Column(name = "profesor_id")
-	private String profesorId;
+	private Long profesorId;
 
 	public Curso() {
 	}
@@ -42,11 +42,11 @@ public class Curso implements Serializable {
 		this.nombreCurso = nombreCurso;
 	}
 
-	public String getProfesorId() {
+	public Long getProfesorId() {
 		return profesorId;
 	}
 
-	public void setProfesorId(String profesorId) {
+	public void setProfesorId(Long profesorId) {
 		this.profesorId = profesorId;
 	}
 
